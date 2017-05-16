@@ -1,11 +1,14 @@
 package com.amway.androidplus.amway;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
+import android.icu.util.ValueIterator;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 import android.widget.Toast;
 
 import org.json.JSONArray;
@@ -29,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
     public static final int READ_TIMEOUT = 15000;
     private RecyclerView mRVFishPrice;
     private AdapterFish mAdapter;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
 
                 // Enter URL address where your json file resides
                 // Even you can make call to php file which returns json data
-                url = new URL("http://192.168.0.102/amway/example.json");
+                url = new URL("http://solucionesweb.ddns.net/amway/example.json");
 
             } catch (MalformedURLException e) {
                 // TODO Auto-generated catch block
@@ -130,18 +134,21 @@ public class MainActivity extends AppCompatActivity {
             pdLoading.dismiss();
             try {
 
-                JSONArray jArray = new JSONArray(result);
+                // The preferred idiom for iterating over collections and arrays
 
+
+
+                JSONArray jArray = new JSONArray(result);
 
                 // Extract data from json and store into ArrayList as class objects
                 for(int i=0;i<jArray.length();i++){
                     JSONObject json_data = jArray.getJSONObject(i);
                     DataFish fishData = new DataFish();
-                    fishData.fishImage= json_data.getString("fish_img");
-                    fishData.fishName= json_data.getString("fish_name");
-                    fishData.catName= json_data.getString("cat_name");
-                    fishData.sizeName= json_data.getString("size_name");
-                    fishData.price= json_data.getInt("price");
+                    fishData.fishImage= json_data.getString("Imagen");
+                    fishData.fishName= json_data.getString("Marca");
+                    fishData.catName= json_data.getString("Titulo");
+                    fishData.sizeName= json_data.getString("Subtitulo");
+                    fishData.price= json_data.getString("Descripcion");
                     data.add(fishData);
                 }
 
@@ -156,6 +163,21 @@ public class MainActivity extends AppCompatActivity {
             }
 
         }
+
+    }
+
+    public void refresh(View view){          //refresh is onClick name given to the button
+        onRestart();
+    }
+
+    @Override
+    protected void onRestart() {
+
+        // TODO Auto-generated method stub
+        super.onRestart();
+        Intent i = new Intent( this, MainActivity.class);  //your class
+        startActivity(i);
+        finish();
 
     }
 }

@@ -2,12 +2,26 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    >
     <android.support.v7.widget.RecyclerView
         android:id="@+id/fishPriceList"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingTop="10dp"
+
         android:layout_weight="1"
+        android:elevation="4dp"
+
         />
+
+    <android.support.v7.widget.ButtonBarLayout
+        android:id="@+id/refreshButom"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/colorAccent"
+        android:onClick="refresh"
+
+        >
+
+    </android.support.v7.widget.ButtonBarLayout>
 </LinearLayout>

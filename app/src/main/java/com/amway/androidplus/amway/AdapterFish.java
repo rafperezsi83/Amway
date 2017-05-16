@@ -45,13 +45,13 @@ public class AdapterFish extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         MyHolder myHolder= (MyHolder) holder;
         DataFish current=data.get(position);
         myHolder.textFishName.setText(current.fishName);
-        myHolder.textSize.setText("Size: " + current.sizeName);
-        myHolder.textType.setText("Category: " + current.catName);
-        myHolder.textPrice.setText("Rs. " + current.price + "\\Kg");
-        myHolder.textPrice.setTextColor(ContextCompat.getColor(context, R.color.colorAccent));
+        myHolder.textSize.setText( current.sizeName);
+        myHolder.textType.setText( current.catName);
+         myHolder.textPrice.setText("Description:"+current.price);
+         myHolder.textPrice.setTextColor(ContextCompat.getColor(context, R.color.colorTextDescription));
 
         // load image into imageview using glide
-        Glide.with(context).load("http://192.168.0.102/amway/images/" + current.fishImage)
+        Glide.with(context).load("http://solucionesweb.ddns.net/amway/images/" + current.fishImage)
                 .placeholder(R.drawable.ic_img_error)
                 .error(R.drawable.ic_img_error)
                 .into(myHolder.ivFish);
